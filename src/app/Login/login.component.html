@@ -1,12 +1,15 @@
 <div class="container pt-5 text-center">
 	<div class="col-md-4 mx-auto">
 		<img src="https://appstudio.org/wp-content/uploads/2013/12/ios7-appstore_nowm.png" width="70px" height="70px" class="rounded" alt="Cinque Terre">
-		<form #f="ngForm" name="loginForm" class="pt-5" (ngSubmit)="onSubmit()">
+		<form  [formGroup]="loginform" class="pt-5" (ngSubmit)="loginform.valid && onSubmit(loginform.value)" novalidate>
 			<div class="form-group">
-				<input type="uname" class="form-control" id="uname" placeholder="USERNAME">
+				<input formControlName="username" type="text" class="form-control" id="uname" placeholder="USERNAME" ngModel required>
 			</div>
-			<button type="submit" class="btn btn-default btn-lg btn-block">login</button>
+			<!-- <button type="submit" class="btn btn-default btn-lg btn-block">login</button> -->
+			<input type="submit"  class="btn btn-default btn-lg btn-block" 
+			[disabled]=" (loginform.valid) ?  false : true" value="Login"/> 
 		</form>
+
 	<button type="submit" class="btn btn-color btn-circle btn-xl" (click)="signupBtn()" style="margin-top: 100px">signup</button>
 	</div>
 </div>
